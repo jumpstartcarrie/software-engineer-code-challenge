@@ -29,6 +29,6 @@ class PhotographyProductTest extends TestCase
 
     public function testItGetsValidPhotographyProductPrice()
     {
-        $this->assertEquals(ProductPrices::Photography->value, $this->photographyProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::Photography->value));
+        $this->assertEquals(ProductPrices::P001->value, $this->photographyProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P001->value));
     }
 }

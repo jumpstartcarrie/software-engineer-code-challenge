@@ -9,9 +9,14 @@ enum ProductCodes: string
     case GasCertificate = 'P003';
     case EicrCertificate = 'P004';
 
-
-    public static function fromName(string $name)
+    public static function values(): array
     {
-        return constant("self::$name")->value;
+        return array_column(self::cases(), 'value');
     }
+
+
+//    public static function fromName(string $name)
+//    {
+//        return constant("self::$name")->value;
+//    }
 }

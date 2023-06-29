@@ -29,6 +29,6 @@ class GasCertificateProductTest extends TestCase
 
     public function testItGetsValidGasCertificateProductPrice()
     {
-        $this->assertEquals(ProductPrices::GasCertificate->value, $this->gasCertificateProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::GasCertificate->value));
+        $this->assertEquals(ProductPrices::P003->value, $this->gasCertificateProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P003->value));
     }
 }

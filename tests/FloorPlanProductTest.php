@@ -29,6 +29,6 @@ class FloorPlanProductTest extends TestCase
 
     public function testItGetsValidFloorPlanProductPrice()
     {
-        $this->assertEquals(ProductPrices::FloorPlan->value, $this->floorPlanProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::FloorPlan->value));
+        $this->assertEquals(ProductPrices::P002->value, $this->floorPlanProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P002->value));
     }
 }

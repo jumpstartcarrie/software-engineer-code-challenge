@@ -29,6 +29,6 @@ class EicrCertificateProductTest extends TestCase
 
     public function testItGetsValidEicrCertificateProductPrice()
     {
-        $this->assertEquals(ProductPrices::EicrCertificate->value, $this->eicrCertificateProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::EicrCertificate->value));
+        $this->assertEquals(ProductPrices::P004->value, $this->eicrCertificateProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P004->value));
     }
 }

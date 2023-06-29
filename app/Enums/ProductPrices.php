@@ -4,10 +4,10 @@ namespace App\Enums;
 
 enum ProductPrices: string
 {
-    case Photography = '200';
-    case FloorPlan = '100';
-    case GasCertificate = '83.50';
-    case EicrCertificate = '51.00';
+    case P001 = '200';
+    case P002 = '100';
+    case P003 = '83.50';
+    case P004 = '51.00';
 
 
     public static function fromName(string $name)

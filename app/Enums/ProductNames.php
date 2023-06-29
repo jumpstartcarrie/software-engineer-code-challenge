@@ -10,8 +10,8 @@ enum ProductNames: string
     case EicrCertificate = 'EICR Certificate';
 
 
-    public static function fromName(string $name)
-    {
-        return constant("self::$name")->value;
-    }
+//    public static function fromName(string $name)
+//    {
+//        return constant("self::$name")->value;
+//    }
 }
