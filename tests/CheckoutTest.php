@@ -18,7 +18,5 @@ class ImpactCheckoutTest extends TestCase
 
     public function testItAddsValidProduct()
     {
-
     }
-
 }
