@@ -14,4 +14,5 @@ enum ProductPrices: string
     {
         return constant("self::$name")->value;
     }
+
 }

@@ -4,15 +4,19 @@ namespace App\Services\Checkout;
 
 
 use App\Enums\ProductCodes;
+use App\Enums\UserOffers;
 use App\Services\Pricing\Price;
+use App\User\User;
 use App\ValueObjects\Product;
 
 class Checkout implements CheckoutContract
 {
     private array $basket;
 
-    public function __construct(private readonly Price $priceService)
-    {
+    public function __construct(
+        private readonly User $user,
+        private readonly Price $priceService
+    ) {
     }
 
     public function add(Product $product): void
@@ -22,7 +26,8 @@ class Checkout implements CheckoutContract
 
     public function total(): int
     {
-        return array_sum(array_column($this->basket, 'total'));
+        $basketTotal = array_sum(array_column($this->basket, 'total'));
+        return count($this->user->getOffers()) > 0 ? $this->getOfferPrice($basketTotal, $this->user->getOffers()) : $basketTotal;
     }
 
     private function updateBasket(string $productCode): void
@@ -40,5 +45,20 @@ class Checkout implements CheckoutContract
 
         $this->basket[$productCode]['quantity']++;
         $this->basket[$productCode]['total'] = $this->priceService->getPrice($productCode, $this->basket[$productCode]['quantity'], $this->basket[$productCode]['total']);
+    }
+
+    private function getOfferPrice(float $basketTotal, array $offers): float
+    {
+        $discount = 0;
+
+        foreach($offers as $offer) {
+            $discount += UserOffers::fromName($offer);
+        }
+
+        if ($discount > 0) {
+            return $basketTotal - ($basketTotal * $discount / 100);
+        }
+
+        return $basketTotal;
     }
 }

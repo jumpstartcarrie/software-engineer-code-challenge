@@ -29,3 +29,13 @@ Your job is to implement the basket which should have the following interface:
 4. It has a total method that returns the total cost of the basket - remember to take into account any valid offers
 
 ## There is no need to build any front end components. The interface and behaviours should be validated by the code and its associated automated tests.
+
+# Usage
+
+Please note: you will need to have Docker and Composer installed locally to run this code.
+
+1. Clone the repository from https://github.com/jumpstartcarrie/software-engineer-code-challenge
+2. In a command window, change to the directory where you cloned the repository and run the following command (note that you can choose any tag name you wish):
+   docker build . --tag <tag_name>
+3. Once the Docker container has been built, run the following command to run the tests:
+   docker run -it <tag_name> php vendor/bin/phpunit tests
