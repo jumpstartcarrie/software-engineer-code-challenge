@@ -22,7 +22,7 @@ class PhotographyProductTest extends TestCase
         $this->assertEquals(ProductCodes::Photography->value, $this->photographyProduct->getCode(), sprintf('Product code does not match expected value of %s', ProductCodes::Photography->value));
     }
 
-    public function testItGetsValidhotographyProductName()
+    public function testItGetsValidPhotographyProductName()
     {
         $this->assertEquals(ProductNames::Photography->value, $this->photographyProduct->getName(), sprintf('Product code does not match expected value of %s', ProductNames::Photography->value));
     }
