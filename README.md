@@ -8,7 +8,7 @@ We also want to see the infrastructure around the system - how can we run your s
 
 When you have completed the challenge please share your code in the form of a GIT repository with daniel.benzie@howsy.com.
 
-# Challenge 
+# Challenge
 
 Howsy are building a new checkout. The checkout system allows users to pay upfront for products added to their property management agreement. The system should also allow users to take advantage of special offers. An initial offer will be “users who have agreed to a 12-month contract are entitled to a 10% discount off the basket total”
 
