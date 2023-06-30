@@ -8,5 +8,5 @@ interface CheckoutContract
 {
     public function add(Product $product): void;
 
-    public function total(): int;
+    public function total(): int|float;
 }

@@ -4,6 +4,7 @@ namespace App\Services\Checkout;
 
 
 use App\Enums\ProductCodes;
+use App\Enums\ProductPrices;
 use App\Enums\UserOffers;
 use App\Services\Pricing\Price;
 use App\User\User;
@@ -25,7 +26,7 @@ class Checkout implements CheckoutContract
         $this->updateBasket($product->productCode);
     }
 
-    public function total(): int
+    public function total(): int|float
     {
         $this->basketTotal = array_sum(array_column($this->basket, 'total'));
         return count($this->user->getOffers()) > 0 ? $this->getOfferPrice($this->user->getOffers()) : $this->basketTotal;
@@ -45,16 +46,18 @@ class Checkout implements CheckoutContract
         $this->basket[$productCode]['total'] ??= 0;
 
         $this->basket[$productCode]['quantity']++;
-        $this->basket[$productCode]['total'] = $this->priceService->getPrice($productCode, $this->basket[$productCode]['quantity'], $this->basket[$productCode]['total']);
+        $this->basket[$productCode]['total'] = $this->priceService->getPrice($productCode, $this->basket[$productCode]['total']);
     }
 
-    private function getOfferPrice(array $offers): void
+    private function getOfferPrice(array $offers): int|float
     {
         foreach($offers as $offer) {
             if (in_array($offer, UserOffers::discountOfferTypes(), true)) {
                 $this->basketTotal = $this->getDiscountedPrice(UserOffers::fromName($offer));
             }
         }
+
+        return $this->basketTotal;
     }
 
     private function getDiscountedPrice(float $discountValue)
