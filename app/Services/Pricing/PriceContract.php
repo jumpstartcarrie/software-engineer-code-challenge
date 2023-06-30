@@ -4,5 +4,5 @@ namespace App\Services\Pricing;
 
 interface PriceContract
 {
-    public function getPrice(string $productCode, int $existingTotal): int|float;
+    public static function getPrice(string $productCode, int $existingTotal): int|float;
 }

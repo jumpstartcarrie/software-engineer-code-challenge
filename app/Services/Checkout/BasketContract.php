@@ -4,7 +4,7 @@ namespace App\Services\Checkout;
 
 use App\ValueObjects\Product;
 
-interface CheckoutContract
+interface BasketContract
 {
     public function add(Product $product): void;
 

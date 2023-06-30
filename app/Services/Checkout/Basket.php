@@ -4,20 +4,17 @@ namespace App\Services\Checkout;
 
 
 use App\Enums\ProductCodes;
-use App\Enums\ProductPrices;
 use App\Enums\UserOffers;
 use App\Services\Pricing\Price;
-use App\User\User;
 use App\ValueObjects\Product;
 
-class Checkout implements CheckoutContract
+class Basket implements BasketContract
 {
     private array $basket;
     private float $basketTotal = 0;
 
     public function __construct(
-        private readonly User $user,
-        private readonly Price $priceService
+        private readonly array $userOffers
     ) {
     }
 
@@ -29,7 +26,7 @@ class Checkout implements CheckoutContract
     public function total(): int|float
     {
         $this->basketTotal = array_sum(array_column($this->basket, 'total'));
-        return count($this->user->getOffers()) > 0 ? $this->getOfferPrice($this->user->getOffers()) : $this->basketTotal;
+        return count($this->userOffers) > 0 ? $this->getOfferPrice($this->userOffers) : $this->basketTotal;
     }
 
     private function updateBasket(string $productCode): void
@@ -46,7 +43,7 @@ class Checkout implements CheckoutContract
         $this->basket[$productCode]['total'] ??= 0;
 
         $this->basket[$productCode]['quantity']++;
-        $this->basket[$productCode]['total'] = $this->priceService->getPrice($productCode, $this->basket[$productCode]['total']);
+        $this->basket[$productCode]['total'] = Price::getPrice($productCode, $this->basket[$productCode]['total']);
     }
 
     private function getOfferPrice(array $offers): int|float
