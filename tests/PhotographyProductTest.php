@@ -2,47 +2,43 @@
 
 namespace Tests;
 
-use App\Product\PhotographyProduct;
+use App\Product\AbstractProduct;
 use PHPUnit\Framework\TestCase;
 use Tests\Helpers\ProductData;
 
 class PhotographyProductTest extends TestCase
 {
-    private PhotographyProduct $photographyProduct;
+    private AbstractProduct $photographyProduct;
 
     protected function setUp(): void
     {
-        $this->photographyProduct = new PhotographyProduct(
-            ProductData::getProductValue('photographyProduct')['code'],
-            ProductData::getProductValue('photographyProduct')['name'],
-            ProductData::getProductValue('photographyProduct')['price']
-        );
+        $this->photographyProduct = ProductData::getProductInstance('PhotographyProduct');
     }
 
     public function testItGetsValidPhotographyProductCode()
     {
         $this->assertEquals(
-            ProductData::getProductValue('photographyProduct')['code'],
+            ProductData::getProductValue('PhotographyProduct')['code'],
             $this->photographyProduct->getCode(),
-            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('photographyProduct')['code'])
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('PhotographyProduct')['code'])
         );
     }
 
     public function testItGetsValidPhotographyProductName()
     {
         $this->assertEquals(
-            ProductData::getProductValue('photographyProduct')['name'],
+            ProductData::getProductValue('PhotographyProduct')['name'],
             $this->photographyProduct->getName(),
-            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('photographyProduct')['name'])
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('PhotographyProduct')['name'])
         );
     }
 
     public function testItGetsValidPhotographyProductPrice()
     {
         $this->assertEquals(
-            ProductData::getProductValue('photographyProduct')['price'],
+            ProductData::getProductValue('PhotographyProduct')['price'],
             $this->photographyProduct->getPrice(),
-            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('photographyProduct')['price'])
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('PhotographyProduct')['price'])
         );
     }
 }

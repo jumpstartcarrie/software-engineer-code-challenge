@@ -4,10 +4,7 @@ namespace Tests;
 
 use App\Enums\ProductPrices;
 use App\Enums\UserOffers;
-use App\Product\EicrCertificateProduct;
-use App\Product\FloorPlanProduct;
-use App\Product\GasCertificateProduct;
-use App\Product\PhotographyProduct;
+use App\Product\AbstractProduct;
 use App\Services\Basket\Basket;
 use App\User\User;
 use App\ValueObjects\Offer;
@@ -17,38 +14,19 @@ use Tests\Helpers\ProductData;
 class BasketTest extends TestCase
 {
     private Basket $basket;
-    private PhotographyProduct $photographyProduct;
-    private FloorPlanProduct $floorPlanProduct;
-    private GasCertificateProduct $gasCertificateProduct;
-    private EicrCertificateProduct $eicrCertificateProduct;
+    private AbstractProduct $photographyProduct;
+    private AbstractProduct $floorPlanProduct;
+    private AbstractProduct $gasCertificateProduct;
+    private AbstractProduct $eicrCertificateProduct;
 
     protected function setUp(): void
     {
         $this->basket = new Basket([]);
 
-        $this->photographyProduct = new PhotographyProduct(
-            ProductData::getProductValue('photographyProduct')['code'],
-            ProductData::getProductValue('photographyProduct')['name'],
-            ProductData::getProductValue('photographyProduct')['price']
-        );
-
-        $this->floorPlanProduct = new FloorPlanProduct(
-            ProductData::getProductValue('floorPlanProduct')['code'],
-            ProductData::getProductValue('floorPlanProduct')['name'],
-            ProductData::getProductValue('floorPlanProduct')['price']
-        );
-
-        $this->gasCertificateProduct = new GasCertificateProduct(
-            ProductData::getProductValue('gasCertificateProduct')['code'],
-            ProductData::getProductValue('gasCertificateProduct')['name'],
-            ProductData::getProductValue('gasCertificateProduct')['price']
-        );
-
-        $this->eicrCertificateProduct = new EicrCertificateProduct(
-            ProductData::getProductValue('eicrCertificateProduct')['code'],
-            ProductData::getProductValue('eicrCertificateProduct')['name'],
-            ProductData::getProductValue('eicrCertificateProduct')['price']
-        );
+        $this->photographyProduct = ProductData::getProductInstance('PhotographyProduct');
+        $this->floorPlanProduct = ProductData::getProductInstance('FloorPlanProduct');
+        $this->gasCertificateProduct = ProductData::getProductInstance('GasCertificateProduct');
+        $this->eicrCertificateProduct = ProductData::getProductInstance('EicrCertificateProduct');
     }
 
     public function testItThrowsExceptionIfSameProductIsAddedMultipleTimes()
