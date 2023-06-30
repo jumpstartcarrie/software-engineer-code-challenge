@@ -20,7 +20,7 @@ class FloorPlanProductTest extends TestCase
 
     public function testItGetsValidFloorPlanProductCode()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('FloorPlanProduct')['code'],
             $this->floorPlanProduct->getCode(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('FloorPlanProduct')['code'])
@@ -29,7 +29,7 @@ class FloorPlanProductTest extends TestCase
 
     public function testItGetsValidFloorPlanProductName()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('FloorPlanProduct')['name'],
             $this->floorPlanProduct->getName(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('FloorPlanProduct')['name'])
@@ -38,7 +38,7 @@ class FloorPlanProductTest extends TestCase
 
     public function testItGetsValidFloorPlanProductPrice()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('FloorPlanProduct')['price'],
             $this->floorPlanProduct->getPrice(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('FloorPlanProduct')['price'])

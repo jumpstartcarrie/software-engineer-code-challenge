@@ -17,7 +17,7 @@ class PhotographyProductTest extends TestCase
 
     public function testItGetsValidPhotographyProductCode()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('PhotographyProduct')['code'],
             $this->photographyProduct->getCode(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('PhotographyProduct')['code'])
@@ -26,7 +26,7 @@ class PhotographyProductTest extends TestCase
 
     public function testItGetsValidPhotographyProductName()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('PhotographyProduct')['name'],
             $this->photographyProduct->getName(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('PhotographyProduct')['name'])
@@ -35,7 +35,7 @@ class PhotographyProductTest extends TestCase
 
     public function testItGetsValidPhotographyProductPrice()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('PhotographyProduct')['price'],
             $this->photographyProduct->getPrice(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('PhotographyProduct')['price'])

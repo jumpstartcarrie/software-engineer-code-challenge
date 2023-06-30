@@ -10,12 +10,12 @@ class ProductData
         'PhotographyProduct' => [
             'code' => 'P001',
             'name' => 'Photography',
-            'price' => 200
+            'price' => 200.00
         ],
         'FloorPlanProduct' => [
             'code' => 'P002',
             'name' => 'Floorplan',
-            'price' => 100
+            'price' => 100.00
         ],
         'GasCertificateProduct' => [
             'code' => 'P003',

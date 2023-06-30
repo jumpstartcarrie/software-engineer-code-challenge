@@ -20,7 +20,7 @@ class EicrCertificateProductTest extends TestCase
 
     public function testItGetsValidEicrCertificateProductCode()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('EicrCertificateProduct')['code'],
             $this->eicrCertificateProduct->getCode(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('EicrCertificateProduct')['code'])
@@ -29,7 +29,7 @@ class EicrCertificateProductTest extends TestCase
 
     public function testItGetsValidEicrCertificateProductName()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('EicrCertificateProduct')['name'],
             $this->eicrCertificateProduct->getName(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('EicrCertificateProduct')['name'])
@@ -38,7 +38,7 @@ class EicrCertificateProductTest extends TestCase
 
     public function testItGetsValidEicrCertificateProductPrice()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('EicrCertificateProduct')['price'],
             $this->eicrCertificateProduct->getPrice(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('EicrCertificateProduct')['price'])

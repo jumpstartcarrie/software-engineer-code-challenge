@@ -37,13 +37,13 @@ class Basket implements BasketContract
         $this->basketItems[$productCode]['total'] += $product->getPrice();
     }
 
-    public function total(): int|float
+    public function total(): float
     {
         $this->basketTotal = array_sum(array_column($this->basketItems, 'total'));
         return count($this->userOffers) > 0 ? $this->getOfferPrice($this->userOffers) : $this->basketTotal;
     }
 
-    private function getOfferPrice(array $offers): int|float
+    private function getOfferPrice(array $offers): float
     {
         foreach ($offers as $offer) {
             if (in_array($offer, UserOffers::discountOfferTypes(), true)) {
@@ -54,7 +54,7 @@ class Basket implements BasketContract
         return $this->basketTotal;
     }
 
-    private function getDiscountedPrice(float $discountValue): int|float
+    private function getDiscountedPrice(float $discountValue): float
     {
         return $this->basketTotal - ($this->basketTotal * $discountValue / 100);
     }

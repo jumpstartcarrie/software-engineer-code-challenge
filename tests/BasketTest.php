@@ -40,7 +40,7 @@ class BasketTest extends TestCase
     public function testItGetsCorrectTotalForSingleProductWithoutOffer()
     {
         $this->basket->add($this->gasCertificateProduct);
-        $this->assertEquals($this->gasCertificateProduct->getPrice(), $this->basket->total(), sprintf('Checkout total does not equal expected value of %s', $this->gasCertificateProduct->getPrice()));
+        $this->assertSame($this->gasCertificateProduct->getPrice(), $this->basket->total(), sprintf('Checkout total does not equal expected value of %s', $this->gasCertificateProduct->getPrice()));
     }
 
     public function testItGetsCorrectTotalForSingleProductWithOffer()
@@ -52,7 +52,7 @@ class BasketTest extends TestCase
         $expectedTotal = $this->photographyProduct->getPrice() - ($this->photographyProduct->getPrice() * UserOffers::AnnualContract->value / 100);
 
         $basket->add($this->photographyProduct);
-        $this->assertEquals($expectedTotal, $basket->total(), sprintf('Checkout total does not equal expected value of %s', $expectedTotal));
+        $this->assertSame($expectedTotal, $basket->total(), sprintf('Checkout total does not equal expected value of %s', $expectedTotal));
     }
 
     public function testItGetsCorrectTotalForMultipleProductsWithoutOffer()
@@ -64,7 +64,7 @@ class BasketTest extends TestCase
         $this->basket->add($this->gasCertificateProduct);
         $this->basket->add($this->eicrCertificateProduct);
 
-        $this->assertEquals($expectedTotal, $this->basket->total(), sprintf('Checkout total does not equal expected value of %s', $expectedTotal));
+        $this->assertSame($expectedTotal, $this->basket->total(), sprintf('Checkout total does not equal expected value of %s', $expectedTotal));
     }
 
     public function testItGetsCorrectTotalForMultipleProductsWithOffer()
@@ -81,6 +81,6 @@ class BasketTest extends TestCase
         $basket->add($this->gasCertificateProduct);
         $basket->add($this->eicrCertificateProduct);
 
-        $this->assertEquals($expectedTotal, $basket->total(), sprintf('Checkout total does not equal expected value of %s', $expectedTotal));
+        $this->assertSame($expectedTotal, $basket->total(), sprintf('Checkout total does not equal expected value of %s', $expectedTotal));
     }
 }

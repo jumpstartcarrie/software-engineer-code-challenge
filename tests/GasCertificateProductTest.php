@@ -20,7 +20,7 @@ class GasCertificateProductTest extends TestCase
 
     public function testItGetsValidGasCertificateProductCode()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('GasCertificateProduct')['code'],
             $this->gasCertificateProduct->getCode(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('GasCertificateProduct')['code'])
@@ -29,7 +29,7 @@ class GasCertificateProductTest extends TestCase
 
     public function testItGetsValidGasCertificateProductName()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('GasCertificateProduct')['name'],
             $this->gasCertificateProduct->getName(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('GasCertificateProduct')['name'])
@@ -38,7 +38,7 @@ class GasCertificateProductTest extends TestCase
 
     public function testItGetsValidGasCertificateProductPrice()
     {
-        $this->assertEquals(
+        $this->assertSame(
             ProductData::getProductValue('GasCertificateProduct')['price'],
             $this->gasCertificateProduct->getPrice(),
             sprintf('Product code does not match expected value of %s', ProductData::getProductValue('GasCertificateProduct')['price'])
