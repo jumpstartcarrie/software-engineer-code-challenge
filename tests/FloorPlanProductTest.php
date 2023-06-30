@@ -7,6 +7,7 @@ use App\Enums\ProductNames;
 use App\Enums\ProductPrices;
 use App\Product\FloorPlanProduct;
 use PHPUnit\Framework\TestCase;
+use Tests\Helpers\ProductData;
 
 class FloorPlanProductTest extends TestCase
 {
@@ -14,21 +15,37 @@ class FloorPlanProductTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->floorPlanProduct = new FloorPlanProduct('P002', 'Floorplan', 100);
+        $this->floorPlanProduct = new FloorPlanProduct(
+            ProductData::getProductValue('floorPlanProduct')['code'],
+            ProductData::getProductValue('floorPlanProduct')['name'],
+            ProductData::getProductValue('floorPlanProduct')['price']
+        );
     }
 
     public function testItGetsValidFloorPlanProductCode()
     {
-        $this->assertEquals(ProductCodes::FloorPlan->value, $this->floorPlanProduct->getCode(), sprintf('Product code does not match expected value of %s', ProductCodes::FloorPlan->value));
+        $this->assertEquals(
+            ProductData::getProductValue('floorPlanProduct')['code'],
+            $this->floorPlanProduct->getCode(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('floorPlanProduct')['code'])
+        );
     }
 
     public function testItGetsValidFloorPlanProductName()
     {
-        $this->assertEquals(ProductNames::FloorPlan->value, $this->floorPlanProduct->getName(), sprintf('Product code does not match expected value of %s', ProductNames::FloorPlan->value));
+        $this->assertEquals(
+            ProductData::getProductValue('floorPlanProduct')['name'],
+            $this->floorPlanProduct->getName(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('floorPlanProduct')['name'])
+        );
     }
 
     public function testItGetsValidFloorPlanProductPrice()
     {
-        $this->assertEquals(ProductPrices::P002->value, $this->floorPlanProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P002->value));
+        $this->assertEquals(
+            ProductData::getProductValue('floorPlanProduct')['price'],
+            $this->floorPlanProduct->getPrice(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('floorPlanProduct')['price'])
+        );
     }
 }

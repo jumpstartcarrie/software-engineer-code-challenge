@@ -2,11 +2,9 @@
 
 namespace Tests;
 
-use App\Enums\ProductCodes;
-use App\Enums\ProductNames;
-use App\Enums\ProductPrices;
 use App\Product\PhotographyProduct;
 use PHPUnit\Framework\TestCase;
+use Tests\Helpers\ProductData;
 
 class PhotographyProductTest extends TestCase
 {
@@ -14,21 +12,37 @@ class PhotographyProductTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->photographyProduct = new PhotographyProduct('P001', 'Photography', 200);
+        $this->photographyProduct = new PhotographyProduct(
+            ProductData::getProductValue('photographyProduct')['code'],
+            ProductData::getProductValue('photographyProduct')['name'],
+            ProductData::getProductValue('photographyProduct')['price']
+        );
     }
 
     public function testItGetsValidPhotographyProductCode()
     {
-        $this->assertEquals(ProductCodes::Photography->value, $this->photographyProduct->getCode(), sprintf('Product code does not match expected value of %s', ProductCodes::Photography->value));
+        $this->assertEquals(
+            ProductData::getProductValue('photographyProduct')['code'],
+            $this->photographyProduct->getCode(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('photographyProduct')['code'])
+        );
     }
 
     public function testItGetsValidPhotographyProductName()
     {
-        $this->assertEquals(ProductNames::Photography->value, $this->photographyProduct->getName(), sprintf('Product code does not match expected value of %s', ProductNames::Photography->value));
+        $this->assertEquals(
+            ProductData::getProductValue('photographyProduct')['name'],
+            $this->photographyProduct->getName(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('photographyProduct')['name'])
+        );
     }
 
     public function testItGetsValidPhotographyProductPrice()
     {
-        $this->assertEquals(ProductPrices::P001->value, $this->photographyProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P001->value));
+        $this->assertEquals(
+            ProductData::getProductValue('photographyProduct')['price'],
+            $this->photographyProduct->getPrice(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('photographyProduct')['price'])
+        );
     }
 }

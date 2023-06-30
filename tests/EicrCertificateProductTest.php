@@ -7,6 +7,7 @@ use App\Enums\ProductNames;
 use App\Enums\ProductPrices;
 use App\Product\EicrCertificateProduct;
 use PHPUnit\Framework\TestCase;
+use Tests\Helpers\ProductData;
 
 class EicrCertificateProductTest extends TestCase
 {
@@ -14,21 +15,37 @@ class EicrCertificateProductTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->eicrCertificateProduct = new EicrCertificateProduct('P004', 'EICR Certificate', 51.00);
+        $this->eicrCertificateProduct = new EicrCertificateProduct(
+            ProductData::getProductValue('eicrCertificateProduct')['code'],
+            ProductData::getProductValue('eicrCertificateProduct')['name'],
+            ProductData::getProductValue('eicrCertificateProduct')['price']
+        );
     }
 
     public function testItGetsValidEicrCertificateProductCode()
     {
-        $this->assertEquals(ProductCodes::EicrCertificate->value, $this->eicrCertificateProduct->getCode(), sprintf('Product code does not match expected value of %s', ProductCodes::EicrCertificate->value));
+        $this->assertEquals(
+            ProductData::getProductValue('eicrCertificateProduct')['code'],
+            $this->eicrCertificateProduct->getCode(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('eicrCertificateProduct')['code'])
+        );
     }
 
     public function testItGetsValidEicrCertificateProductName()
     {
-        $this->assertEquals(ProductNames::EicrCertificate->value, $this->eicrCertificateProduct->getName(), sprintf('Product code does not match expected value of %s', ProductNames::EicrCertificate->value));
+        $this->assertEquals(
+            ProductData::getProductValue('eicrCertificateProduct')['name'],
+            $this->eicrCertificateProduct->getName(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('eicrCertificateProduct')['name'])
+        );
     }
 
     public function testItGetsValidEicrCertificateProductPrice()
     {
-        $this->assertEquals(ProductPrices::P004->value, $this->eicrCertificateProduct->getPrice(), sprintf('Product code does not match expected value of %s', ProductPrices::P004->value));
+        $this->assertEquals(
+            ProductData::getProductValue('eicrCertificateProduct')['price'],
+            $this->eicrCertificateProduct->getPrice(),
+            sprintf('Product code does not match expected value of %s', ProductData::getProductValue('eicrCertificateProduct')['price'])
+        );
     }
 }
