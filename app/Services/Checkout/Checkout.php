@@ -12,6 +12,7 @@ use App\ValueObjects\Product;
 class Checkout implements CheckoutContract
 {
     private array $basket;
+    private float $basketTotal = 0;
 
     public function __construct(
         private readonly User $user,
@@ -26,8 +27,8 @@ class Checkout implements CheckoutContract
 
     public function total(): int
     {
-        $basketTotal = array_sum(array_column($this->basket, 'total'));
-        return count($this->user->getOffers()) > 0 ? $this->getOfferPrice($basketTotal, $this->user->getOffers()) : $basketTotal;
+        $this->basketTotal = array_sum(array_column($this->basket, 'total'));
+        return count($this->user->getOffers()) > 0 ? $this->getOfferPrice($this->user->getOffers()) : $this->basketTotal;
     }
 
     private function updateBasket(string $productCode): void
@@ -47,18 +48,17 @@ class Checkout implements CheckoutContract
         $this->basket[$productCode]['total'] = $this->priceService->getPrice($productCode, $this->basket[$productCode]['quantity'], $this->basket[$productCode]['total']);
     }
 
-    private function getOfferPrice(float $basketTotal, array $offers): float
+    private function getOfferPrice(array $offers): void
     {
-        $discount = 0;
-
         foreach($offers as $offer) {
-            $discount += UserOffers::fromName($offer);
+            if (in_array($offer, UserOffers::discountOfferTypes(), true)) {
+                $this->basketTotal = $this->getDiscountedPrice(UserOffers::fromName($offer));
+            }
         }
+    }
 
-        if ($discount > 0) {
-            return $basketTotal - ($basketTotal * $discount / 100);
-        }
-
-        return $basketTotal;
+    private function getDiscountedPrice(float $discountValue)
+    {
+        return $this->basketTotal - ($this->basketTotal * $discountValue / 100);
     }
 }

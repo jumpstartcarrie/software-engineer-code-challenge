@@ -20,6 +20,6 @@ class UserTest extends TestCase
         $offerType = 'AnnualContract';
         $this->user->addOffer(Offer::fromString($offerType));
 
-        $this->assertTrue(in_array($offerType, $this->user->getOffers()));
+        $this->assertContains($offerType, $this->user->getOffers());
     }
 }
